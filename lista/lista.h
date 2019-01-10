@@ -25,14 +25,14 @@ class lista{
 		void scrivilista(type t,int p);    //scrivi t in posizione p
 		void crealista();           //crea lista di lungh 0
 		int primolista() const;   //posizione del primo elemento
-		bool finelista(int p) const;  //ti dice se è l'ultimo elem
+		bool finelista(int p) const;  //ti dice se Ã¨ l'ultimo elem
 		int succlista(int p) const;    //posizione elemento successivo
 		int predlista(int p) const; 	//posizione elemento precedente
 		void inslista(type t,int p);     //inserisci nuovo elem in pos p
 		void canclista(int p);		//cancella elemento in position p
 		int size(lista l);   //restituisce la lunghezza della lista
 		void inverti(lista l);   //inverte gli elementi della lista
-		bool palindroma(lista l);   //true se lista è palindroma false altrimenti
+		bool palindroma(lista l);   //true se lista Ã¨ palindroma false altrimenti
 		void stampal(lista l);
 		void insListaOrd(type t);   //lista lineare ordinata
 		
