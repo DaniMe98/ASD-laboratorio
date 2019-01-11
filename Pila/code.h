@@ -16,6 +16,7 @@ class coda{
 			~coda(){delete element;};
 			
 			//operatori
+			coda<ele> & operator =(const coda<ele> & );
 			void creacoda();
 			void pop();
 			bool codaVuota();
@@ -24,15 +25,46 @@ class coda{
 			types leggiCoda();
 			int getTesta();
 			int getFondo();
+			coda<ele> & positivi(const coda<ele>& c);
 	
 		protected:
 			int testa;
 			types *element;
-			int MAXLUNG=10;
+			int MAXLUNG=100;
 			int fondo;
 			
 	
-};
+}; 
+
+template<class ele>
+coda<ele> &coda<ele>::operator=(const coda<ele> &c){
+	
+	this->~coda();
+	 
+	coda::fondo=c.fondo;
+	coda::testa=c.testa;
+	this->element=new types[c.MAXLUNG];
+	
+	for(int i=testa; i<fondo; i++){
+			coda::element[i]=c.element[i];
+	}
+}
+
+
+template<class ele>
+coda<ele> & coda<ele>::positivi(const coda<ele> &c){
+		
+		this->~coda();
+		this->MAXLUNG=c.MAXLUNG;			
+			for(int i=c.testa; i<c.fondo; i++){
+				if(c.element[i]>=0){
+							this->push(c.element[i]);
+							cout<<"c: "<<c.element[i]<<"this: "<<this->element[i]<<endl;
+					}					
+			}
+				
+	return *this;
+}
 
 template<class ele>
 int coda<ele>::getTesta(){
@@ -41,7 +73,11 @@ int coda<ele>::getTesta(){
 
 template<class ele>
 int coda<ele>::getFondo(){
-	return coda::fondo-1;
+	if(fondo==0){
+					return coda::fondo;
+						}else{
+									return coda::fondo-1;
+						}
 }
 
 template<class ele>
@@ -71,8 +107,8 @@ void coda<ele>::creacoda(){
 
 template<class ele>
 typename coda<ele>::types coda<ele>::leggiCoda(){
-	if(!coda::codaVuota()){
-	return element[testa];
+	if(!this->codaVuota()){
+	return this->element[this->testa];
 			}else{
 					cout<<"Nessun elemento da visualizzare"<<endl;
 				}
@@ -81,8 +117,8 @@ typename coda<ele>::types coda<ele>::leggiCoda(){
 template<class ele>
 void coda<ele>::pop(){
 	
-	if(!coda::codaVuota()){
-		coda::testa=coda::testa+1;
+	if(!this->codaVuota()){
+		this->testa=this->testa+1;
 		}else{
 			cout<<"Coda gia' vuota."<<endl;
 		}
@@ -90,22 +126,24 @@ void coda<ele>::pop(){
 
 template<class ele>
 void coda<ele>::push(types elee){
-	if(fondo-testa==coda::MAXLUNG){
+	if(this->fondo-this->testa==this->MAXLUNG){
 			cout<<"Capienza massima coda raggiunta."<<endl;
 			}else{
 					
-					element[fondo]=elee;
-					fondo++;
+					this->element[this->fondo]=elee;
+					this->fondo++;
 					
 			}
 }
 
 template<class ele>
 void coda<ele>::stampaCoda(){
-
-	if(!coda::codaVuota()){
-		for(int i=coda::testa; i<coda::fondo; i++){
-				cout<<"Elemento coda n. ("<<i<<") : "<<coda::element[i]<<endl;
+		int j=1;
+	if(!this->codaVuota()){
+		for(int i=this->testa; i<this->fondo; i++){
+				
+				cout<<"Elemento coda n. ("<<j<<") : "<<this->element[i]<<endl;
+				j++;
 				}
 		}else{
 			cout<<"Coda Vuota"<<endl;
