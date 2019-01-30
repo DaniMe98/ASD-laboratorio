@@ -23,7 +23,7 @@ class TreeList : public Tree<I, int> {
 	virtual void insRoot (node) ;        //inserisce root =0
 	virtual node root () const ;         //restituisce il nodo root
 	virtual node parent (node) const ;      //restituisce il nodo padre
-	virtual bool leaf (node) const ;      //true se nodo è foglia,false altrimenti
+	virtual bool leaf (node) const ;      //true se nodo Ã¨ foglia,false altrimenti
 	virtual node firstChild (node) const ;   //restituisce il primo figlio del nodo node
 	virtual bool lastSibling (node) const ;      //true se node non ha altri fratelli,false altrimenti
 	virtual node nextSibling (node) const ;    //restituisce il nodo fratello
@@ -36,7 +36,7 @@ class TreeList : public Tree<I, int> {
 	void insFirst(node, item);     //inserisce un figlio (diventa il primo figlio disponibile libero)
 	void ins(node, item);         //inserisce un fratello al nodo node
 
-	virtual void writeNode (node, item) ;     //serve solo per scrivere la root che all'inizio è =0
+	virtual void writeNode (node, item) ;     //serve solo per scrivere la root che all'inizio Ã¨ =0
 	virtual item readNode (node) const ;       //ritrona il valore del nodo node
 
 	void print() const;         //printa a sinistra tutti i nodi disponibili e a destra di ogni nodo i suoi figli
